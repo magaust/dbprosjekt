@@ -31,7 +31,7 @@ public class DBManager {
 			}
 
 			//close ut alle ressurser
-			ResultSet.close();
+			resultSet.close();
 			SQLStatement.close();
 			connection.close();
 		} catch (Exception e) {
