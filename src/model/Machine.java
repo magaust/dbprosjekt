@@ -33,3 +33,5 @@ public class Machine {
         this.userDescription = userDescription;
     }
 }
+
+%test
