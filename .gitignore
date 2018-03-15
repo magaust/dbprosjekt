@@ -1,4 +1,5 @@
-
-workspace.xml
-tasks.xml
+.idea/workspace.xml
+.idea/tasks.xml
 dbprosjekt.iml
+
+/bin/
