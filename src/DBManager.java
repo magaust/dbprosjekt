@@ -8,11 +8,14 @@ public class DBManager {
 	public DBManager() {
 		try {
 			//opprett en connection til mySQL serveren
-			Connection conn = DriverManager.getConnection(
+			Connection connection = DriverManager.getConnection(
+				//lager en connection til en server på localhost på port 3306
+				//med en database som heter sys, med brukernavn root og passord root
 				"jdbc:mysql://localhost:3306/sys", "root", "root");
 
+
 			//lag et sql statement
-			Statement SQLStatement = conn.createStatement();
+			Statement SQLStatement = connection.createStatement();
 			String select = "select LastName, FirstName from persons";
 
 			//kjør statement
@@ -26,6 +29,11 @@ public class DBManager {
 
 				System.out.println(fName + "  " + lName);
 			}
+
+			//close ut alle ressurser
+			ResultSet.close();
+			SQLStatement.close();
+			connection.close();
 		} catch (Exception e) {
 			System.out.println("Errer connecting");
 			e.printStackTrace();
