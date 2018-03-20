@@ -1,7 +1,10 @@
+package model;
+
 public class Machine {
     private int id;
     private String name;
     private String userDescription;
+    private ExcerciseGroup excerciseGroup;
 
     public Machine(int id, String name, String userDescription) {
         this.id = id;
@@ -31,5 +34,14 @@ public class Machine {
 
     public void setUserDescription(String userDescription) {
         this.userDescription = userDescription;
+    }
+
+
+    /**
+     * Mangler konsistens imellom grupper
+     * @param eg
+     */
+    public void setExcerciseGroup(ExcerciseGroup eg) {
+        this.excerciseGroup = eg;
     }
 }
