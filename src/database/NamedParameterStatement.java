@@ -1,9 +1,6 @@
 package database;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,8 +31,16 @@ public class NamedParameterStatement {
         statement.setInt(parameterIndexMap.get(parameter), value);
     }
 
+    public void setDouble(String parameter, double value) throws SQLException {
+        statement.setDouble(parameterIndexMap.get(parameter), value);
+    }
+
     public void setString(String parameter, String value) throws SQLException {
         statement.setString(parameterIndexMap.get(parameter), value);
+    }
+
+    public void setDate(String parameter, Date value) throws SQLException {
+        statement.setDate(parameterIndexMap.get(parameter), value);
     }
 
     public PreparedStatement getStatement() {
