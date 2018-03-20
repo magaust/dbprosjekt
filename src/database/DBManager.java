@@ -1,3 +1,5 @@
+package database;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -7,7 +9,7 @@ public abstract class DBManager {
 
 	public Connection connection;
 
-	public DBManager() {
+	public DBManager()  throws Exception {
 		try {
 			//opprett en connection til mySQL serveren
 			connection = DriverManager.getConnection(

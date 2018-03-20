@@ -24,4 +24,9 @@ public class User {
     public int getID() {
         return id;
     }
+
+    //override of the toString method so we can log the object
+    public String toString() {
+        return "User, ID: " + id + ", Name: " + name;
+    }
 }
