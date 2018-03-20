@@ -1,4 +1,4 @@
-
+import model.*;
 
 class app {
 
@@ -6,5 +6,7 @@ class app {
 		System.out.println("test");
 
 		DBManager db = new DBManager();
+		UserDBManager userDBManager = new UserDBManager();
+		userDBManager.createUser(new User(5, "Øivind ;^)"));
 	}
 }

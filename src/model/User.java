@@ -16,4 +16,12 @@ public class User {
     public void addWorkout(Workout workout) {
         workouts.add(workout);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getID() {
+        return id;
+    }
 }
