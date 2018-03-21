@@ -1091,29 +1091,29 @@ public class MetaDataRegressionTest extends BaseTestCase {
             }
         }
 
-        createTable("`app tab`", "( C1 int(11) NULL, C2 int(11) NULL, INDEX NEWINX (C1), INDEX NEWINX2 (C1, C2))", "InnoDB");
+        createTable("`App tab`", "( C1 int(11) NULL, C2 int(11) NULL, INDEX NEWINX (C1), INDEX NEWINX2 (C1, C2))", "InnoDB");
 
-        this.stmt.executeUpdate("ALTER TABLE `app tab` ADD CONSTRAINT APPFK FOREIGN KEY (C1) REFERENCES `app tab` (C1)");
+        this.stmt.executeUpdate("ALTER TABLE `App tab` ADD CONSTRAINT APPFK FOREIGN KEY (C1) REFERENCES `App tab` (C1)");
 
         /*
          * this.rs = this.conn.getMetaData().getCrossReference(
-         * this.conn.getCatalog(), null, "app tab", this.conn.getCatalog(),
-         * null, "app tab");
+         * this.conn.getCatalog(), null, "App tab", this.conn.getCatalog(),
+         * null, "App tab");
          */
-        this.rs = ((com.mysql.jdbc.DatabaseMetaData) this.conn.getMetaData()).extractForeignKeyFromCreateTable(this.conn.getCatalog(), "app tab");
+        this.rs = ((com.mysql.jdbc.DatabaseMetaData) this.conn.getMetaData()).extractForeignKeyFromCreateTable(this.conn.getCatalog(), "App tab");
         assertTrue("must return a row", this.rs.next());
 
         String catalog = this.conn.getCatalog();
 
-        assertEquals(("comment; APPFK(`C1`) REFER `" + catalog + "`/ `app tab` (`C1`)").toUpperCase(), this.rs.getString(3).toUpperCase());
+        assertEquals(("comment; APPFK(`C1`) REFER `" + catalog + "`/ `App tab` (`C1`)").toUpperCase(), this.rs.getString(3).toUpperCase());
 
         this.rs.close();
 
-        this.rs = this.conn.getMetaData().getImportedKeys(this.conn.getCatalog(), null, "app tab");
+        this.rs = this.conn.getMetaData().getImportedKeys(this.conn.getCatalog(), null, "App tab");
 
         assertTrue(this.rs.next());
 
-        this.rs = this.conn.getMetaData().getExportedKeys(this.conn.getCatalog(), null, "app tab");
+        this.rs = this.conn.getMetaData().getExportedKeys(this.conn.getCatalog(), null, "App tab");
 
         assertTrue(this.rs.next());
     }

@@ -3,12 +3,12 @@ package model;
 import java.util.ArrayList;
 
 
-public class ExcerciseGroup {
+public class ExerciseGroup {
     private int id;
     private String name;
     private ArrayList<Exercise> group;
 
-    public ExcerciseGroup(int id, String name) {
+    public ExerciseGroup(int id, String name) {
         this.id = id;
         this.name = name;
         group = new ArrayList<>();
