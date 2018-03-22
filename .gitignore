@@ -54,10 +54,10 @@ local.properties
 .worksheet
 
 ### Eclipse Patch ###
-# Eclipse Core		
+# Eclipse Core
 .project
 
-# JDT-specific (Eclipse Java Development Tools)		
+# JDT-specific (Eclipse Java Development Tools)
 .classpath
 
 ### Intellij ###
@@ -68,8 +68,6 @@ local.properties
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/dictionaries
-**/.idea/workspace.xml
-
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/

@@ -4,7 +4,7 @@ public class Machine {
     private int id;
     private String name;
     private String userDescription;
-    private ExcerciseGroup excerciseGroup;
+    private ExerciseGroup excerciseGroup;
 
     public Machine(int id, String name, String userDescription) {
         this.id = id;
@@ -41,7 +41,7 @@ public class Machine {
      * Mangler konsistens imellom grupper
      * @param eg
      */
-    public void setExcerciseGroup(ExcerciseGroup eg) {
+    public void setExcerciseGroup(ExerciseGroup eg) {
         this.excerciseGroup = eg;
     }
 }

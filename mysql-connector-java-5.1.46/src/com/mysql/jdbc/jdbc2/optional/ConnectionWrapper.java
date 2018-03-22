@@ -426,7 +426,7 @@ public class ConnectionWrapper extends WrapperBase implements Connection {
      * is closed when the application server calls
      * mysqlPooledConnection.close(). this object is de-referenced by the pooled
      * connection each time mysqlPooledConnection.getConnection() is called by
-     * app server.
+     * App server.
      * 
      * @throws SQLException
      *             if an error occurs

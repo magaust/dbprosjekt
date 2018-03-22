@@ -68,4 +68,5 @@ public class Workout {
     public double getDuration() {
         return duration;
     }
+
 }
