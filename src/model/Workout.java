@@ -1,19 +1,24 @@
 package model;
 
+import java.sql.Date;
+
 public class Workout {
     private int id;
-    private User user;
-    private String fitnessLevel;
-    private String performance;
+    private int user;
+    private double duration;
+    private int fitnessLevel;
+    private int performance;
     private String note;
+    private Date date;
 
-    public Workout(int id, User user, String fitnessLevel, String performance, String note) {
+    public Workout(int id, int user, double duration, int fitnessLevel, int performance, String note, Date date) {
         this.id = id;
         this.user = user;
+        this.duration = duration;
         this.fitnessLevel = fitnessLevel;
         this.performance = performance;
         this.note = note;
-
+        this.date = date;
     }
 
     public int getId() {
@@ -24,27 +29,27 @@ public class Workout {
         this.id = id;
     }
 
-    public User getUser() {
+    public int getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(int user) {
         this.user = user;
     }
 
-    public String getFitnessLevel() {
+    public int getFitnessLevel() {
         return fitnessLevel;
     }
 
-    public void setFitnessLevel(String fitnessLevel) {
+    public void setFitnessLevel(int fitnessLevel) {
         this.fitnessLevel = fitnessLevel;
     }
 
-    public String getPerformance() {
+    public int getPerformance() {
         return performance;
     }
 
-    public void setPerformance(String performance) {
+    public void setPerformance(int performance) {
         this.performance = performance;
     }
 
@@ -54,5 +59,13 @@ public class Workout {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public double getDuration() {
+        return duration;
     }
 }
