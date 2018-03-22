@@ -76,4 +76,6 @@ public class WorkoutDBManager extends DBManager{
         return workouts;
     }
 
+    //TODO: addExerciseToWorkout(int exerciseID, int workoutID). Lagrer relasjonstaellen mellom en øvelse å en workout.
+
 }
