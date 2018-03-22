@@ -76,6 +76,15 @@ public class WorkoutDBManager extends DBManager{
         return workouts;
     }
 
-    //TODO: addExerciseToWorkout(int exerciseID, int workoutID). Lagrer relasjonstaellen mellom en øvelse å en workout.
+    public void addExerciseToWorkout(int exerciseID, int workoutID) throws Exception{
+        String query = "insert into ØtilhørerW (ØvelseID, WorkoutID)" +
+                " values (:ØvelseID:, :WorkoutID:);";
 
+        NamedParameterStatement statement =
+                new NamedParameterStatement(query, connection);
+        statement.setInt("ØvelseID", exerciseID);
+        statement.setInt("WorkoutID", workoutID);
+        System.out.println("Created a relation between workoutID: " + workoutID + " and exerciseID: " + exerciseID);
+        statement.getStatement().executeUpdate();
+    }
 }
