@@ -19,8 +19,8 @@ public class WorkoutDBManager extends DBManager{
 
         NamedParameterStatement statement =
                 new NamedParameterStatement(query, connection);
-        statement.setString("NumberID", Integer.toString(workout.getId()));
-        statement.setString("BrukerID", Integer.toString(workout.getUser()));
+        statement.setInt("NumberID", workout.getId());
+        statement.setInt("BrukerID", workout.getUser());
         statement.setDouble("varighet", workout.getDuration());
         statement.setInt("PersonligForm", workout.getFitnessLevel());
         statement.setInt("prestasjon", workout.getPerformance());
@@ -51,5 +51,31 @@ public class WorkoutDBManager extends DBManager{
         }
         return workouts;
     }
+
+    public List<Workout> getLastNWorkouts(int userID, int n) throws Exception{
+        String query = "select NumberID, BrukerID, varighet, PersonligForm, prestasjon, notat, dato from workout" +
+                " where brukerId = :brukerId: ;";
+
+        NamedParameterStatement statement = new NamedParameterStatement(query, connection);
+        statement.setInt("brukerId", userID);
+        ResultSet result = statement.getStatement().executeQuery();
+
+        List<Workout> workouts = new ArrayList<Workout>();
+        while(result.next() && workouts.size() < n) {
+            workouts.add(new Workout(
+                    result.getInt("NumberID"),
+                    result.getInt("BrukerID"),
+                    result.getDouble("varighet"),
+                    result.getInt("PersonligForm"),
+                    result.getInt("prestasjon"),
+                    result.getString("notat"),
+                    result.getDate("dato")
+            ));
+        }
+        System.out.println("Got " + workouts.size() + " workouts. Wanted the last " + n);
+        return workouts;
+    }
+
+    //TODO: addExerciseToWorkout(int exerciseID, int workoutID). Lagrer relasjonstaellen mellom en øvelse å en workout.
 
 }
