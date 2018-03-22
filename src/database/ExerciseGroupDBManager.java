@@ -25,14 +25,14 @@ public class ExerciseGroupDBManager extends DBManager{
 		statement.getStatement().executeUpdate();
 	}
 
-	public void addExerciseToGroup(ExerciseGroup exerciseGroup, Exercise exercise) throws SQLException{
+	public void addExerciseToGroup(int exerciseGroupId, int exerciseId) throws SQLException{
 		String query = "insert into ØtilhørerG (ØvelsegruppeID, ØvelseID)" +
 				" values (:ØvelsegruppeID:, :ØvelseID:);";
 
 		NamedParameterStatement statement =
 		new NamedParameterStatement(query, connection);
-		statement.setString("ØvelsegruppeID", Integer.toString(exerciseGroup.getId()));
-		statement.setString("ØvelseID", Integer.toString(exercise.getId()));
+		statement.setInt("ØvelsegruppeID", exerciseGroupId);
+		statement.setInt("ØvelseID", exerciseId);
 		statement.getStatement().executeUpdate();
 	}
 	

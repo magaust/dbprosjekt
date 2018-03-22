@@ -22,7 +22,7 @@ public class ExerciseDBManager extends DBManager {
 
     public void createExercise(Exercise exercise) throws Exception{
         String query = "insert into Øvelse (ØvelseID, Navn, Beskrivelse, ApparatØvelse)" +
-                " values (:ØvelseID:, :Navn:, :Beskrivelse:, ApparatØvelse:);";
+                " values (:ØvelseID:, :Navn:, :Beskrivelse:, :ApparatØvelse:);";
 
         NamedParameterStatement statement = new NamedParameterStatement(query, connection);
         statement.setInt("ØvelseID", exercise.getId());

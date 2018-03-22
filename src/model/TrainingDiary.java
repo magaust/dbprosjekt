@@ -123,7 +123,9 @@ public class TrainingDiary {
         String name = s.next();
         System.out.print("\n Insert exercise description: ");
         String description = s.next();
-        Exercise ex = new Exercise(id, name, description);
+        System.out.print("\n Is this a machine? (0/1) ");
+        Boolean isMachine = s.nextBoolean();
+        Exercise ex = new Exercise(id, name, description, isMachine);
     }
 
     private void createMachine() {
