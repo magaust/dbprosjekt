@@ -148,7 +148,7 @@ public class TrainingDiary {
         int performance = s.nextInt();
         System.out.print("\n Insert note: ");
         String note = s.next();
-        System.out.print("\n Insert date: (String(DD.MM.YYYY) ");
+        System.out.print("\n Insert date: (String(YYYY.MM.DD) ");
         String date = s.next();
         Workout workout = new Workout(id, user, duration, fitnessLevel, performance, note, Date.valueOf(date));
         try {
