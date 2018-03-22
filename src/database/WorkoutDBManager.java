@@ -19,8 +19,8 @@ public class WorkoutDBManager extends DBManager{
 
         NamedParameterStatement statement =
                 new NamedParameterStatement(query, connection);
-        statement.setString("NumberID", Integer.toString(workout.getId()));
-        statement.setString("BrukerID", Integer.toString(workout.getUser()));
+        statement.setInt("NumberID", workout.getId());
+        statement.setInt("BrukerID", workout.getUser());
         statement.setDouble("varighet", workout.getDuration());
         statement.setInt("PersonligForm", workout.getFitnessLevel());
         statement.setInt("prestasjon", workout.getPerformance());
