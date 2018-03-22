@@ -1,9 +1,11 @@
 package database;
 
+import com.sun.xml.internal.ws.api.pipe.FiberContextSwitchInterceptor;
 import model.User;
 import model.Workout;
 
 import java.sql.ResultSet;
+import java.util.*;
 
 public class WorkoutDBManager extends DBManager{
 
@@ -18,29 +20,36 @@ public class WorkoutDBManager extends DBManager{
         NamedParameterStatement statement =
                 new NamedParameterStatement(query, connection);
         statement.setString("NumberID", Integer.toString(workout.getId()));
-        statement.setString("BrukerID", Integer.toString(workout.getUser().getID()));
+        statement.setString("BrukerID", Integer.toString(workout.getUser()));
         statement.setDouble("varighet", workout.getDuration());
         statement.setInt("PersonligForm", workout.getFitnessLevel());
         statement.setInt("prestasjon", workout.getPerformance());
         statement.setString("notat", workout.getNote());
-        statement.setDate("varighet", workout.getDate());
+        statement.setDate("dato", workout.getDate());
         statement.getStatement().executeUpdate();
     }
 
-    //ikke implementert enda
-    /*
-    public Workout getWorkout(int workoutID) throws Exception{
-        String query = "select navn from bruker" +
+    public List<Workout> getWorkoutsByUserId(int userID) throws Exception{
+        String query = "select NumberID, BrukerID, varighet, PersonligForm, prestasjon, notat, dato from workout" +
                 " where brukerId = :brukerId: ;";
 
         NamedParameterStatement statement = new NamedParameterStatement(query, connection);
-        statement.setString("brukerId", Integer.toString(brukerID));
+        statement.setInt("brukerId", userID);
         ResultSet result = statement.getStatement().executeQuery();
-        if(!result.first()) { //no User in the result set
-            return null;
-        } else { //found a User
-            return new User(brukerID, result.getString("navn"));
+
+        List<Workout> workouts = new ArrayList<Workout>();
+        while(result.next()) {
+            workouts.add(new Workout(
+                    result.getInt("NumberID"),
+                    result.getInt("BrukerID"),
+                    result.getDouble("varighet"),
+                    result.getInt("PersonligForm"),
+                    result.getInt("prestasjon"),
+                    result.getString("notat"),
+                    result.getDate("dato")
+            ));
         }
+        return workouts;
     }
-    */
+
 }

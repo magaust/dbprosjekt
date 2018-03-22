@@ -4,14 +4,14 @@ import java.sql.Date;
 
 public class Workout {
     private int id;
-    private User user;
+    private int user;
     private double duration;
     private int fitnessLevel;
     private int performance;
     private String note;
     private Date date;
 
-    public Workout(int id, User user, double duration, int fitnessLevel, int performance, String note, Date date) {
+    public Workout(int id, int user, double duration, int fitnessLevel, int performance, String note, Date date) {
         this.id = id;
         this.user = user;
         this.duration = duration;
@@ -29,11 +29,11 @@ public class Workout {
         this.id = id;
     }
 
-    public User getUser() {
+    public int getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(int user) {
         this.user = user;
     }
 

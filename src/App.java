@@ -15,7 +15,7 @@ public class App {
 			//create a new userDBManager
 			userDBManager = new UserDBManager();
 			//try to create a new user on the db
-			int userID = (int) (Math.random() * 100000); //a 'random' userID to avoid collisions when testing
+			int userID = (int) (1); //a 'random' userID to avoid collisions when testing
 			User newUser = new User(userID, "Øivind ;^)");
 			userDBManager.createUser(newUser);
 
