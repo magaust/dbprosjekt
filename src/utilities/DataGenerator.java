@@ -43,7 +43,7 @@ public class DataGenerator {
             }
 
             System.out.println("Creating exercises");
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
