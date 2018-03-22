@@ -84,7 +84,6 @@ public class WorkoutDBManager extends DBManager{
                 new NamedParameterStatement(query, connection);
         statement.setInt("ØvelseID", exerciseID);
         statement.setInt("WorkoutID", workoutID);
-        System.out.println("Created a relation between workoutID: " + workoutID + " and exerciseID: " + exerciseID);
         statement.getStatement().executeUpdate();
     }
 }
