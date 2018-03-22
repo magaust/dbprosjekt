@@ -1,9 +1,13 @@
 package model;
 
+import database.ExerciseDBManager;
+import database.ExerciseGroupDBManager;
+import database.MachineDBManager;
 import database.WorkoutDBManager;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class TrainingDiary {
@@ -27,7 +31,7 @@ public class TrainingDiary {
             int choice = s.nextInt();
             if (choice > 0 && choice < 6) {
                 if (choice == 1) {
-                    registrate();
+                    register();
                 }
                 if (choice == 2) {
                     getWorkoutInfo();
@@ -55,7 +59,16 @@ public class TrainingDiary {
     private void getWorkoutInfo() {
         System.out.print("\n How many of the last workout do you want to see: ");
         int numOfWorkout = s.nextInt();
-        // TODO: fill in query and print result in console
+        try {
+            WorkoutDBManager wDBM = new WorkoutDBManager();
+            List<Workout> workouts = wDBM.getLastNWorkouts(user.getID(), numOfWorkout);
+            for (Workout workout:
+                 workouts) {
+                System.out.println("Notat: " + workout.getNote());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -73,7 +86,8 @@ public class TrainingDiary {
         // TODO: print the chosen exercise group.
     }
 
-    public void registrate() {
+
+    public void register() {
         System.out.println("" +
                 "1: Machine" +
                 "2: Exercise" +
@@ -106,11 +120,9 @@ public class TrainingDiary {
         ExerciseGroup eg = new ExerciseGroup(id, name);
 
         try{
-            /*
-            ExcrciseGroupManager egm = new ExerciseGroupManager
-            egm.createExerciseGroup(eg)
+            ExerciseGroupDBManager egm = new ExerciseGroupDBManager();
+            egm.createExerciseGroup(eg);
             System.out.println("ExerciseGroup created");
-             */
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -126,6 +138,14 @@ public class TrainingDiary {
         System.out.print("\n Is this a machine? (0/1) ");
         Boolean isMachine = s.nextBoolean();
         Exercise ex = new Exercise(id, name, description, isMachine);
+
+        try {
+            ExerciseDBManager eDBM = new ExerciseDBManager();
+            eDBM.createExercise(ex);
+            System.out.println("Exercise created");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void createMachine() {
@@ -137,6 +157,14 @@ public class TrainingDiary {
         System.out.print("\n Insert machine description: ");
         String description = s.next();
         Machine machine = new Machine(id, name, description);
+
+        try {
+            MachineDBManager mDBM = new MachineDBManager();
+            mDBM.createMachine(machine);
+            System.out.println("Created machine");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void createWorkOut() {
