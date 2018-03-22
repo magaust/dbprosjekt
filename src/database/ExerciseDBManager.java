@@ -14,9 +14,9 @@ import java.util.List;
  *
  */
 
-public class ExerciseDBMangager extends DBManager {
+public class ExerciseDBManager extends DBManager {
 
-    public ExerciseDBMangager () throws Exception{
+    public ExerciseDBManager() throws Exception{
         super();
     }
 
