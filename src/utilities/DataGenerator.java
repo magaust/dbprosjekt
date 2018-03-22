@@ -23,6 +23,7 @@ public class DataGenerator {
         }
         //add workouts to the user
         int workoutId = (int) (Math.random()*100000);
+        int exerciseId = (int) (Math.random()*100000);
         try {
             System.out.println("Creating workout");
             WorkoutDBManager wDBM = new WorkoutDBManager();
@@ -34,16 +35,18 @@ public class DataGenerator {
                         10.0,
                         0,
                         0,
-                        "Dette er et notat om hvordan workouten gikk.",
+                        "Dette er et notat om hvordan workouten (" + i + ") gikk.",
                         date
                 );
                 wDBM.createWorkout(newWorkout);
                 System.out.println("Workout created with id: " + workoutId + " for the userId " + userID);
             }
+
+            System.out.println("Creating exercises");
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
     }
 }
