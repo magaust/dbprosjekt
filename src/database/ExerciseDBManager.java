@@ -91,7 +91,7 @@ public class ExerciseDBManager extends DBManager {
         return exerids;
     }
 
-    public List<Integer> getAllExerciseByWorkoutIds(List<Integer> workoutIds) throws Exception {
+    public List<Exercise> getAllExerciseByWorkoutIds(List<Integer> workoutIds) throws Exception {
         String workoutIdsString = "";
         for (int i = 0; i < workoutIds.size(); i++) {
             workoutIdsString += " workout.NumberID = " + workoutIds.get(i);
@@ -100,14 +100,19 @@ public class ExerciseDBManager extends DBManager {
             }
         }
 
-        String query = "select distinct Øvelse.ØvelseID from (Øvelse inner join ØtilhørerW on Øvelse.ØvelseID = ØtilhørerW.ØvelseID) " +
+        String query = "select distinct Øvelse.ØvelseID, Øvelse.Navn, Øvelse.Beskrivelse, Øvelse.ApparatØvelse from (Øvelse inner join ØtilhørerW on Øvelse.ØvelseID = ØtilhørerW.ØvelseID) " +
                 "inner join workout on workout.NumberID = ØtilhørerW.WorkoutID where (" + workoutIdsString + ");";
         Statement stmt = connection.createStatement();
         //System.out.println(query);
         ResultSet rs = stmt.executeQuery(query);
-        List<Integer> exerids = new ArrayList<>();
+        List<Exercise> exerids = new ArrayList<>();
         while (rs.next()){
-            exerids.add(rs.getInt("ØvelseID"));
+            exerids.add(new Exercise(
+                    rs.getInt("ØvelseID"),
+                    rs.getString("Navn"),
+                    rs.getString("Beskrivelse"),
+                    rs.getBoolean("ApparatØvelse")
+            ));
         }
         return exerids;
     }
