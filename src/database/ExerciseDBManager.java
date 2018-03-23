@@ -59,5 +59,15 @@ public class ExerciseDBManager extends DBManager {
         return exercises;
     }
 
+    public void addMachineToExercise(int machineId, int exerciseId) throws Exception {
+        String query = "insert into ØbrukerA (ApparatID, ØvelseID)" +
+                " values (:ApparatID:, :ØvelseID:);";
+
+        NamedParameterStatement statement = new NamedParameterStatement(query, connection);
+        statement.setInt("ApparatID", machineId);
+        statement.setInt("ØvelseID", exerciseId);
+
+        statement.getStatement().executeUpdate();
+    }
 
 }
