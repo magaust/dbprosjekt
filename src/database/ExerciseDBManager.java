@@ -59,5 +59,10 @@ public class ExerciseDBManager extends DBManager {
         return exercises;
     }
 
+    /*
+select count(ØvelseID) as NumberOfExercies
+	from ØbrukerA as EUM
+	where EUM.ApparatID = 1;
+	*/
 
 }

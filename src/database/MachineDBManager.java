@@ -1,6 +1,7 @@
 package database;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import model.Machine;
 
@@ -22,5 +23,10 @@ public class MachineDBManager extends DBManager{
 		statement.getStatement().executeUpdate();
 	}
 
-	
+	public List<String> getAllMachines() throws SQLException {
+		String query = "select navn, ApparatID";
+	}
+
+
+
 }

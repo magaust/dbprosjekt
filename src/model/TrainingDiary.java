@@ -51,7 +51,7 @@ public class TrainingDiary {
     }
 
     private void seeNumOfExercise() {
-        System.out.println("Which machine do you want to see (name of machine): ");
+        System.out.println("Which machine do you want to see (id of machine): ");
         String name = s.next();
         //TODO: Query to find the number of exercises for the chosen machine
     }
