@@ -45,7 +45,7 @@ public class ExerciseGroupDBManager extends DBManager{
 		List<String> ExerciseGroups = new ArrayList<>();
 		while (rs.next()) {
 			String name = rs.getString("navn");
-			String id = Integer.toString(rs.getInt("ØvelsegrupperID"));
+			String id = Integer.toString(rs.getInt("ØvelsegruppeID"));
 			ExerciseGroups.add(name +" : "+id);
 		}
 		return ExerciseGroups;

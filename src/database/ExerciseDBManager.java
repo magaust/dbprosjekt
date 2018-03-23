@@ -44,7 +44,7 @@ public class ExerciseDBManager extends DBManager {
     }
 
     public List<String> getExerciseByGroupId(int ExerciseGroupId) throws Exception{
-        String query = "select Øvelse.Navn from øvelseGruppe as EG  inner join ØtilhørerG as EBG on EG.ØvelsegruppeID = EBG.ØvelsegruppeID" +
+        String query = "select E.Navn from øvelseGruppe as EG  inner join ØtilhørerG as EBG on EG.ØvelsegruppeID = EBG.ØvelsegruppeID" +
                 " inner join Øvelse as E on E.ØvelseID = EBG.ØvelseID" +
                 " where EG.ØvelsegruppeID = :ØvelsegruppeID:;";
 
