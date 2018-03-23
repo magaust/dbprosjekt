@@ -27,4 +27,8 @@ public class Exercise {
     }
 
     public boolean getIsMachine() { return isMachine; }
+
+    public String toString() {
+        return "Exercise, ID: " + id + ", Name: " + name + ", Description: " + description + ", Machine? " + ((isMachine) ? "True" : "False");
+    }
 }
