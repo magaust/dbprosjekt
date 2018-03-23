@@ -2,6 +2,7 @@ package database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,20 @@ public class ExerciseGroupDBManager extends DBManager{
 		statement.setInt("ØvelsegruppeID", exerciseGroupId);
 		statement.setInt("ØvelseID", exerciseId);
 		statement.getStatement().executeUpdate();
+	}
+
+	public List<String> getAllExerciseGroups() throws SQLException {
+		String query = "select navn, ØvelsegruppeID from ØvelseGruppe";
+
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		List<String> ExerciseGroups = new ArrayList<>();
+		while (rs.next()) {
+			String name = rs.getString("navn");
+			String id = Integer.toString(rs.getInt("ØvelsegrupperID"));
+			ExerciseGroups.add(name +" : "+id);
+		}
+		return ExerciseGroups;
 	}
 	
 }

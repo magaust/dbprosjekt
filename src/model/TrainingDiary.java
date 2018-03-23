@@ -81,18 +81,30 @@ public class TrainingDiary {
     private void findExerciseInGroup() {
         System.out.print("\n Which exercise group do you want to see: ");
         int choice = s.nextInt();
-        // TODO: add query to get all excercise group and print them with a number.
+        // TODO: add query to get all excercise group and print them with an IDnumber.
+        System.out.println(">>>");
         int ch = s.nextInt();
-        // TODO: print the chosen exercise group.
+        try {
+            ExerciseDBManager edbm = new ExerciseDBManager();
+            List<String> exercises = edbm.getExerciseByGroupId(ch);
+            System.out.println("Exercises in group nr " + ch + ": ");
+            for(String e : exercises) {
+                System.out.println(e);
+            };
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
     public void register() {
         System.out.println("" +
-                "1: Machine" +
-                "2: Exercise" +
-                "3: Exercise group" +
-                "4: Workout");
+                "1: Machine \n" +
+                "2: Exercise \n" +
+                "3: Exercise group \n" +
+                "4: Workout \n");
         System.out.print(">>>");
         Scanner s = new Scanner(System.in);
         int choice = s.nextInt();
@@ -113,9 +125,9 @@ public class TrainingDiary {
     }
 
     private void createExerciseGroup() {
-        System.out.print("\n Insert Id(int): ");
+        System.out.println("Insert Id(int): ");
         int id = s.nextInt();
-        System.out.print("\n Insert group name: ");
+        System.out.println("Insert group name: ");
         String name = s.next();
         ExerciseGroup eg = new ExerciseGroup(id, name);
 
@@ -129,13 +141,13 @@ public class TrainingDiary {
     }
 
     private void createExercise() {
-        System.out.print("\n Insert exercise id: ");
+        System.out.println("Insert exercise id: ");
         int id = s.nextInt();
-        System.out.print("\n Insert exercise name ");
+        System.out.println("Insert exercise name ");
         String name = s.next();
-        System.out.print("\n Insert exercise description: ");
+        System.out.println("Insert exercise description: ");
         String description = s.next();
-        System.out.print("\n Is this a machine? (0/1) ");
+        System.out.println("Is this a machine? (0/1) ");
         Boolean isMachine = s.nextBoolean();
         Exercise ex = new Exercise(id, name, description, isMachine);
 
@@ -150,11 +162,11 @@ public class TrainingDiary {
 
     private void createMachine() {
         // id name userDesc,
-        System.out.print("\n Insert machine id: ");
+        System.out.println("Insert machine id: ");
         int id = s.nextInt();
-        System.out.print("\n Insert machine name: ");
+        System.out.println("Insert machine name: ");
         String name = s.next();
-        System.out.print("\n Insert machine description: ");
+        System.out.println("Insert machine description: ");
         String description = s.next();
         Machine machine = new Machine(id, name, description);
 
@@ -170,15 +182,15 @@ public class TrainingDiary {
     private void createWorkOut() {
         System.out.print("Insert Id(int): ");
         int id = s.nextInt();
-        System.out.print("\n Insert duration(double): ");
+        System.out.println("Insert duration(double): ");
         double duration = s.nextDouble();
-        System.out.print("\n Insert fitnesslevel (int): ");
+        System.out.println("Insert fitnesslevel (int): ");
         int fitnessLevel = s.nextInt();
-        System.out.print("\n Insert performance (int) ");
+        System.out.println("Insert performance (int) ");
         int performance = s.nextInt();
-        System.out.print("\n Insert note: ");
+        System.out.println("Insert note: ");
         String note = s.next();
-        System.out.print("\n Insert date: (String(YYYY.MM.DD) ");
+        System.out.println("Insert date: (String(YYYY.MM.DD) ");
         String date = s.next();
         Workout workout = new Workout(id, 1, duration, fitnessLevel, performance, note, Date.valueOf(date));
         try {
