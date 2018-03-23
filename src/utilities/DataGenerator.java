@@ -38,6 +38,12 @@ public class DataGenerator {
             System.out.println("Creating exercises with ID: " + exerciseId + " and " + (exerciseId + 1));
             eDBM.createExercise(new Exercise(exerciseId, "Benkpress", "Ta en benk å press", false));
             eDBM.createExercise(new Exercise(exerciseId + 1, "Bøy", "Knebøy", false));
+            eDBM.createExercise(new Exercise(exerciseId + 2, "Jogging", "Jogge på tredemølle", false));
+            eDBM.createExercise(new Exercise(exerciseId + 3, "Markløft", "Standard mark", false));
+            eDBM.createExercise(new Exercise(exerciseId + 4, "Sumo-mark", "Markløft sumo variant", false));
+            eDBM.createExercise(new Exercise(exerciseId + 5, "BicepCurls", "For the pretty girls", false));
+            eDBM.createExercise(new Exercise(exerciseId + 6, "Rows", "For the hoes", false));
+
 
 
             System.out.println("###CREATING WORKOUTS###");
@@ -55,11 +61,14 @@ public class DataGenerator {
                 wDBM.createWorkout(newWorkout);
                 System.out.println("Workout created with id: " + workoutId + " for the userId " + userId);
 
-                wDBM.addExerciseToWorkout(exerciseId, workoutId + i, 100+(10*i), 10);
-                System.out.println("Added exercise " + exerciseId + " to workout " + workoutId);
                 if(i < 5) {
-                    wDBM.addExerciseToWorkout(exerciseId + 1, workoutId + i, 10+(10*i), 10);
-                    System.out.println("Added exercise " + (exerciseId + 1) + " to workout " + (workoutId + i));
+                    for(int j = 0; j < 7; j++) {
+                        wDBM.addExerciseToWorkout(exerciseId + j, workoutId + i, 10+(10*i), 10);
+                        System.out.println("Added exercise " + (exerciseId + j) + " to workout " + (workoutId + i));
+                    }
+                } else {
+                    wDBM.addExerciseToWorkout(exerciseId, workoutId + i, 100+(10*i), 10);
+                    System.out.println("Added exercise " + exerciseId + " to workout " + workoutId);
                 }
             }
 
