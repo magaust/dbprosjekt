@@ -21,6 +21,8 @@ constraint check((0<=prestasjon)&(prestasjon>=10))
 create table if not exists ØtilhørerW(
 ØvelseID int not null,
 WorkoutID int not null,
+Kilo int,
+Reps int,
 constraint ØtilhørerWPK primary key (ØvelseID, WorkoutID),
 constraint ØtilhørerWFK1 foreign key (ØvelseID) references Øvelse(ØvelseID),
 constraint ØtilhørerWFK2 foreign key (WorkoutID) references Workout(NumberID)

@@ -53,10 +53,10 @@ public class DataGenerator {
                 wDBM.createWorkout(newWorkout);
                 System.out.println("Workout created with id: " + workoutId + " for the userId " + userId);
 
-                wDBM.addExerciseToWorkout(exerciseId, workoutId + i);
+                wDBM.addExerciseToWorkout(exerciseId, workoutId + i, 100+(10*i), 10);
                 System.out.println("Added exercise " + exerciseId + " to workout " + workoutId);
                 if(i < 5) {
-                    wDBM.addExerciseToWorkout(exerciseId + 1, workoutId + i);
+                    wDBM.addExerciseToWorkout(exerciseId + 1, workoutId + i, 10+(10*i), 10);
                     System.out.println("Added exercise " + (exerciseId + 1) + " to workout " + (workoutId + i));
                 }
             }
