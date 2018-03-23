@@ -57,7 +57,7 @@ public class TrainingDiary {
     }
 
     private void getWorkoutInfo() {
-        System.out.print("\n How many of the last workout do you want to see: ");
+        System.out.println("How many of the last workout do you want to see: ");
         int numOfWorkout = s.nextInt();
         try {
             WorkoutDBManager wDBM = new WorkoutDBManager();
@@ -73,13 +73,13 @@ public class TrainingDiary {
     }
 
     public void seeExerciseLog() {
-        System.out.print("\n Write the id of a workout to see the log: ");
+        System.out.println("Write the id of a workout to see the log: ");
         int workoutId = s.nextInt();
         // TODO: fill in query and print result in console
     }
 
     private void findExerciseInGroup() {
-        System.out.print("\n Which exercise group do you want to see(Id number): ");
+        System.out.println("Which exercise group do you want to see(Id number): ");
         try {
             ExerciseDBManager edbm = new ExerciseDBManager();
             ExerciseGroupDBManager egdbm = new ExerciseGroupDBManager();
