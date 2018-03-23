@@ -54,8 +54,8 @@ public class TrainingDiary {
         System.out.println("Which machine do you want to see (id of machine): ");
         try {
             MachineDBManager mdbm = new MachineDBManager();
-            List<String> machines = mdbm.getAllMachines();
-            for(String machine : machines) {
+            List<Machine> machines = mdbm.getAllMachines();
+            for(Machine machine : machines) {
                 System.out.println(machine);
             }
             int id = s.nextInt();
@@ -162,6 +162,17 @@ public class TrainingDiary {
         String description = s.next();
         System.out.println("Is this a machine? (True/False) ");
         Boolean isMachine = s.nextBoolean();
+
+        Exercise ex = new Exercise(id, name, description, isMachine);
+
+        try {
+            ExerciseDBManager eDBM = new ExerciseDBManager();
+            eDBM.createExercise(ex);
+            System.out.println("Exercise created");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         if(isMachine) {
             //tullat måte å gjøre d på
             try {
@@ -175,19 +186,11 @@ public class TrainingDiary {
                 System.out.println("Insert machine id: ");
                 int machineId = s.nextInt();
                 ExerciseDBManager eDBM = new ExerciseDBManager();
-                
+                eDBM.addMachineToExercise(machineId, id);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        Exercise ex = new Exercise(id, name, description, isMachine);
-
-        try {
-            ExerciseDBManager eDBM = new ExerciseDBManager();
-            eDBM.createExercise(ex);
-            System.out.println("Exercise created");
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

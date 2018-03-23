@@ -60,7 +60,6 @@ public class ExerciseDBManager extends DBManager {
         return exercises;
     }
 
-addMachinesToGenerator
     public void addMachineToExercise(int machineId, int exerciseId) throws Exception {
         String query = "insert into ØbrukerA (ApparatID, ØvelseID)" +
                 " values (:ApparatID:, :ØvelseID:);";
