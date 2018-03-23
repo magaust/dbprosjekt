@@ -96,7 +96,7 @@ public class WorkoutDBManager extends DBManager{
     public List<Integer> getWorkoutFromDates(String from, String to, int userid) throws Exception {
         String query = "select NumberID from Workout where BrukerID ="+userid+" and dato >'"+from+"' and dato<'"+to+"';";
         Statement stmt = connection.createStatement();
-        System.out.println(query);
+        //System.out.println(query);
         ResultSet resultSet = stmt.executeQuery(query);
 
         List<Integer> workouts = new ArrayList<>();

@@ -85,25 +85,22 @@ public class TrainingDiary {
     }
 
     public void seeExerciseLog() {
-        System.out.println("YYYY-MM-DD");
+
+        System.out.println("Insert from date YYYY-MM-DD");
         String fdate = s.next();
-        System.out.println("YYYY-MM-DD");
+        System.out.println("Insert to date YYYY-MM-DD");
         String tdate = s.next();
 
         // Get all workouts to user by Date. Save list for ID
         try {
             WorkoutDBManager wdbm = new WorkoutDBManager();
-            System.out.println(""+fdate +""+ tdate+ user.getID());
             List<Integer> workoutID = wdbm.getWorkoutFromDates(fdate, tdate, user.getID());
-            for(Integer wid : workoutID) {
-                System.out.println(wid);
-            }
 
             // List all exercises done inside the specified timeintervall
             ExerciseDBManager edbm = new ExerciseDBManager();
             List<Integer> exerID = edbm.getAllExerciseByWorkoutIds(workoutID);
 
-            System.out.println("avail ex");
+            System.out.println("Exercises you have completed in that time:");
             for(Integer eid : exerID) {
                 System.out.println(eid);
             }
