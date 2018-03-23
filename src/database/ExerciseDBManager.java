@@ -4,6 +4,7 @@ import model.Exercise;
 import model.Workout;
 
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,10 +60,17 @@ public class ExerciseDBManager extends DBManager {
         return exercises;
     }
 
-    /*
-select count(ØvelseID) as NumberOfExercies
-	from ØbrukerA as EUM
-	where EUM.ApparatID = 1;
-	*/
+    public int getNumberOfExercisesWithMachine(int id) throws Exception{
+        String query = "select count(ØvelseID) as NumberOfExercies from ØbrukerA as EUM where EUM.ApparatID ="+id+";";
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        int n=0;
+        if(rs.next()){
+            n = rs.getInt("NumberOfExercies");
+        }
+        return n;
+    }
+
+
 
 }
