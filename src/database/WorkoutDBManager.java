@@ -8,6 +8,7 @@ import model.Workout;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
 public class WorkoutDBManager extends DBManager{
@@ -90,11 +91,11 @@ public class WorkoutDBManager extends DBManager{
         statement.getStatement().executeUpdate();
     }
 
-    public List<Integer> getWorkoutFromDates(java.sql.Date from, Date to, int userid) throws Exception {
-        String query = "select NumberID where BrukerID ="+userid+"and dato >"+from+"and dato<"+to+";";
-
-        NamedParameterStatement statement = new NamedParameterStatement(query, connection);
-        ResultSet resultSet = statement.getStatement().executeQuery();
+    public List<Integer> getWorkoutFromDates(String from, String to, int userid) throws Exception {
+        String query = "select NumberID from W3orkout where BrukerID ="+userid+" and dato >"+from+" and dato<"+to+";";
+        Statement stmt = connection.createStatement();
+        System.out.println(query);
+        ResultSet resultSet = stmt.executeQuery(query);
 
         List<Integer> workouts = new ArrayList<>();
         while (resultSet.next()) {

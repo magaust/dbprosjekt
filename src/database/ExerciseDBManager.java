@@ -3,6 +3,7 @@ package database;
 import model.Exercise;
 import model.Workout;
 
+import javax.xml.transform.Result;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -79,5 +80,18 @@ public class ExerciseDBManager extends DBManager {
         return exerids;
     };
 
-    
+    public String getResultLog(int wid, int eid) throws Exception{
+        String query = "select Kilo, Reps from ØtilhørerW where ØvelseID="+wid+" and WorkoutID="+eid+";";
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        String result="";
+        while (rs.next()) {
+            int kg = rs.getInt("Kilo");
+            int reps = rs.getInt("Reps");
+            result = "Kilo: "+kg+" * "+reps+" Reps;";
+        }
+        return result;
+    }
+
+
 }
