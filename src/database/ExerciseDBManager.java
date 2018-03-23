@@ -91,6 +91,23 @@ public class ExerciseDBManager extends DBManager {
         return exerids;
     }
 
+    public List<String> getAllExerciseNameAndID() throws Exception {
+        String query = "select navn, ØvelseID from Øvelse;";
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        List<String> exerids = new ArrayList<>();
+
+        while (rs.next()){
+            String result = "";
+            String name = rs.getString("Navn");
+            String øid = Integer.toString(rs.getInt("ØvelseID"));
+            result = name + ": ID: " +øid;
+            exerids.add(result);
+        }
+        return exerids;
+    }
+
+
     public List<Integer> getAllExerciseByWorkoutIds(List<Integer> workoutIds) throws Exception {
         String workoutIdsString = "";
         for (int i = 0; i < workoutIds.size(); i++) {
