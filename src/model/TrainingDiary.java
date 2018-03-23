@@ -6,6 +6,7 @@ import database.MachineDBManager;
 import database.WorkoutDBManager;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -84,9 +85,37 @@ public class TrainingDiary {
     }
 
     public void seeExerciseLog() {
-        System.out.println("Write the id of a workout to see the log: ");
-        int workoutId = s.nextInt();
+
+        int fyear = s.nextInt();
+        int fmonth = s.nextInt();
+        int fday = s.nextInt();
+        int tyear = s.nextInt();
+        int tmonth = s.nextInt();
+        int tday = s.nextInt();
+
+        Date fdate = new Date(fyear, fmonth, fday);
+        Date tdate = new Date(tyear, tmonth, tday);
+
         // TODO: fill in query and print result in console
+        // Get all workouts to user by Date. Save list for ID
+        try {
+            WorkoutDBManager wdbm = new WorkoutDBManager();
+            List<Integer> workoutID = wdbm.getWorkoutFromDates(fdate, tdate, this.user.getID());
+
+            // List all exercises done inside the specified timeintervall
+
+
+
+
+            // Print log of exercise specified by user
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
     }
 
     private void findExerciseInGroup() {

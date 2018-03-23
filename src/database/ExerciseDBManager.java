@@ -3,6 +3,7 @@ package database;
 import model.Exercise;
 import model.Workout;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -40,10 +41,6 @@ public class ExerciseDBManager extends DBManager {
     }
 
 
-    public void getResultLog() throws Exception {
-
-    }
-
     public List<String> getExerciseByGroupId(int ExerciseGroupId) throws Exception{
         String query = "select E.Navn from øvelseGruppe as EG  inner join ØtilhørerG as EBG on EG.ØvelsegruppeID = EBG.ØvelsegruppeID" +
                 " inner join Øvelse as E on E.ØvelseID = EBG.ØvelseID" +
@@ -71,6 +68,16 @@ public class ExerciseDBManager extends DBManager {
         return n;
     }
 
+    public List<Integer> getAllExerciseID() throws Exception {
+        String query = "select ØvelseID from Øvelse;";
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        List<Integer> exerids = new ArrayList<>();
+        while (rs.next()){
+            exerids.add(rs.getInt("ØvelseID"));
+        }
+        return exerids;
+    };
 
-
+    
 }
