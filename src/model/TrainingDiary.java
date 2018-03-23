@@ -160,7 +160,7 @@ public class TrainingDiary {
         String name = s.next();
         System.out.println("Insert exercise description: ");
         String description = s.next();
-        System.out.println("Is this a machine? (0/1) ");
+        System.out.println("Is this a machine? (True/False) ");
         Boolean isMachine = s.nextBoolean();
         Exercise ex = new Exercise(id, name, description, isMachine);
 
