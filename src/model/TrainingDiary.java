@@ -224,9 +224,9 @@ public class TrainingDiary {
         int performance = s.nextInt();
         System.out.println("Insert note: ");
         String note = s.next();
-        System.out.println("Insert date: (String(YYYY.MM.DD) ");
+        System.out.println("Insert date: (YYYY-MM-DD) ");
         String date = s.next();
-        Workout workout = new Workout(id, 1, duration, fitnessLevel, performance, note, Date.valueOf(date));
+        Workout workout = new Workout(id, user.getID(), duration, fitnessLevel, performance, note, Date.valueOf(date));
         try {
             WorkoutDBManager workoutDBManager = new WorkoutDBManager();
             workoutDBManager.createWorkout(workout);
