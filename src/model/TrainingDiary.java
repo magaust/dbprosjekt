@@ -79,19 +79,21 @@ public class TrainingDiary {
     }
 
     private void findExerciseInGroup() {
-        System.out.print("\n Which exercise group do you want to see: ");
-        int choice = s.nextInt();
-        // TODO: add query to get all excercise group and print them with an IDnumber.
-        System.out.println(">>>");
-        int ch = s.nextInt();
+        System.out.print("\n Which exercise group do you want to see(Id number): ");
         try {
             ExerciseDBManager edbm = new ExerciseDBManager();
+            ExerciseGroupDBManager egdbm = new ExerciseGroupDBManager();
+            List<String> exercisegroups = egdbm.getAllExerciseGroups();
+            for(String eg : exercisegroups) {
+                System.out.println(eg);
+            }
+            System.out.println(">>>");
+            int ch = s.nextInt();
             List<String> exercises = edbm.getExerciseByGroupId(ch);
             System.out.println("Exercises in group nr " + ch + ": ");
             for(String e : exercises) {
                 System.out.println(e);
             };
-
         }
         catch (Exception e){
             e.printStackTrace();
