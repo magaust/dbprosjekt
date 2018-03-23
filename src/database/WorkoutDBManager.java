@@ -1,10 +1,14 @@
 package database;
 
 import com.sun.xml.internal.ws.api.pipe.FiberContextSwitchInterceptor;
+import model.Exercise;
 import model.User;
 import model.Workout;
 
+import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
 public class WorkoutDBManager extends DBManager{
@@ -88,4 +92,21 @@ public class WorkoutDBManager extends DBManager{
         statement.setInt("Reps", Reps);
         statement.getStatement().executeUpdate();
     }
+
+    public List<Integer> getWorkoutFromDates(String from, String to, int userid) throws Exception {
+        String query = "select NumberID from W3orkout where BrukerID ="+userid+" and dato >"+from+" and dato<"+to+";";
+        Statement stmt = connection.createStatement();
+        System.out.println(query);
+        ResultSet resultSet = stmt.executeQuery(query);
+
+        List<Integer> workouts = new ArrayList<>();
+        while (resultSet.next()) {
+            workouts.add(resultSet.getInt("BrukerID"));
+        }
+        return workouts;
+    }
+
+
+
+
 }

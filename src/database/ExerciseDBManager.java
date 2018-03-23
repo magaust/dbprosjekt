@@ -3,6 +3,8 @@ package database;
 import model.Exercise;
 import model.Workout;
 
+import javax.xml.transform.Result;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -39,10 +41,6 @@ public class ExerciseDBManager extends DBManager {
         statement.getStatement().executeUpdate();
     }
 
-
-    public void getResultLog() throws Exception {
-
-    }
 
     public List<String> getExerciseByGroupId(int ExerciseGroupId) throws Exception{
         String query = "select E.Navn from øvelseGruppe as EG  inner join ØtilhørerG as EBG on EG.ØvelsegruppeID = EBG.ØvelsegruppeID" +
@@ -82,5 +80,28 @@ public class ExerciseDBManager extends DBManager {
         return n;
     }
 
+    public List<Integer> getAllExerciseID() throws Exception {
+        String query = "select ØvelseID from Øvelse;";
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        List<Integer> exerids = new ArrayList<>();
+        while (rs.next()){
+            exerids.add(rs.getInt("ØvelseID"));
+        }
+        return exerids;
+    };
+
+    public String getResultLog(int wid, int eid) throws Exception{
+        String query = "select Kilo, Reps from ØtilhørerW where ØvelseID="+wid+" and WorkoutID="+eid+";";
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        String result="";
+        while (rs.next()) {
+            int kg = rs.getInt("Kilo");
+            int reps = rs.getInt("Reps");
+            result = "Kilo: "+kg+" * "+reps+" Reps;";
+        }
+        return result;
+    }
 
 }

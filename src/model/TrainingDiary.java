@@ -6,6 +6,7 @@ import database.MachineDBManager;
 import database.WorkoutDBManager;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -84,9 +85,45 @@ public class TrainingDiary {
     }
 
     public void seeExerciseLog() {
-        System.out.println("Write the id of a workout to see the log: ");
-        int workoutId = s.nextInt();
+        System.out.println("YYYY-MM-DD");
+        String fdate = s.next();
+        System.out.println("YYYY-MM-DD");
+        String tdate = s.next();
+
+
         // TODO: fill in query and print result in console
+        // Get all workouts to user by Date. Save list for ID
+        try {
+            WorkoutDBManager wdbm = new WorkoutDBManager();
+            System.out.println(""+fdate +""+ tdate+ user.getID());
+            List<Integer> workoutID = wdbm.getWorkoutFromDates(fdate, tdate, user.getID());
+            for(Integer wid : workoutID) {
+                System.out.println(wid);
+            }
+            System.out.println("Enter workoutID: ");
+            int wid = s.nextInt();
+
+
+            // List all exercises done inside the specified timeintervall
+            ExerciseDBManager edbm = new ExerciseDBManager();
+            List<Integer> exerID = edbm.getAllExerciseID();
+
+            for(Integer eid : exerID) {
+                System.out.println(eid);
+            }
+
+            System.out.println("Enter ExerciseID");
+            int eid=s.nextInt();
+
+            // Print log of exercise specified by user
+            System.out.println(edbm.getResultLog(wid,eid));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
     }
 
     private void findExerciseInGroup() {
