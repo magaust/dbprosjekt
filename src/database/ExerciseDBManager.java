@@ -94,14 +94,14 @@ public class ExerciseDBManager extends DBManager {
     public List<Integer> getAllExerciseByWorkoutIds(List<Integer> workoutIds) throws Exception {
         String workoutIdsString = "";
         for (int i = 0; i < workoutIds.size(); i++) {
-            workoutIdsString += workoutIds.get(i);
+            workoutIdsString += " workout.NumberID = " + workoutIds.get(i);
             if(i != workoutIds.size() - 1) {
                 workoutIdsString += " or ";
             }
         }
 
-        String query = "select  Øvelse.ØvelseID,  workout.NumberID from (Øvelse inner join ØtilhørerW on Øvelse.ØvelseID = ØtilhørerW.ØvelseID) " +
-                "inner join workout on workout.NumberID = ØtilhørerW.WorkoutID where (workout.NumberID = " + workoutIdsString + ");";
+        String query = "select distinct Øvelse.ØvelseID from (Øvelse inner join ØtilhørerW on Øvelse.ØvelseID = ØtilhørerW.ØvelseID) " +
+                "inner join workout on workout.NumberID = ØtilhørerW.WorkoutID where (" + workoutIdsString + ");";
         Statement stmt = connection.createStatement();
         System.out.println(query);
         ResultSet rs = stmt.executeQuery(query);

@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="094341bb-38d7-432b-81ce-460c5df56f18" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/database/ExerciseDBManager.java" afterPath="$PROJECT_DIR$/src/database/ExerciseDBManager.java" />
-      <change beforePath="$PROJECT_DIR$/src/model/TrainingDiary.java" afterPath="$PROJECT_DIR$/src/model/TrainingDiary.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -68,8 +67,8 @@
       <file leaf-file-name="ExerciseDBManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/database/ExerciseDBManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="103" column="35" lean-forward="false" selection-start-line="103" selection-start-column="28" selection-end-line="103" selection-end-column="35" />
+            <state relative-caret-position="262">
+              <caret line="103" column="87" lean-forward="false" selection-start-line="103" selection-start-column="87" selection-end-line="103" selection-end-column="87" />
               <folding />
             </state>
           </provider>
@@ -725,8 +724,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/database/ExerciseDBManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="103" column="35" lean-forward="false" selection-start-line="103" selection-start-column="28" selection-end-line="103" selection-end-column="35" />
+        <state relative-caret-position="262">
+          <caret line="103" column="87" lean-forward="false" selection-start-line="103" selection-start-column="87" selection-end-line="103" selection-end-column="87" />
           <folding />
         </state>
       </provider>
