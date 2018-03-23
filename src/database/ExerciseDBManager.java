@@ -129,7 +129,7 @@ public class ExerciseDBManager extends DBManager {
         while (rs.next()) {
             int kg = rs.getInt("Kilo");
             int reps = rs.getInt("Reps");
-            result += "Kilo: "+kg+" * "+reps+" Reps + \n";
+            result += "Kilo: "+kg+" * "+reps+" Reps + " + reps + "\n";
         }
         return result;
     }
