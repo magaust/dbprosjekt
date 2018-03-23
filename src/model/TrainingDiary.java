@@ -90,8 +90,6 @@ public class TrainingDiary {
         System.out.println("YYYY-MM-DD");
         String tdate = s.next();
 
-
-        // TODO: fill in query and print result in console
         // Get all workouts to user by Date. Save list for ID
         try {
             WorkoutDBManager wdbm = new WorkoutDBManager();
@@ -100,23 +98,22 @@ public class TrainingDiary {
             for(Integer wid : workoutID) {
                 System.out.println(wid);
             }
-            System.out.println("Enter workoutID: ");
-            int wid = s.nextInt();
-
 
             // List all exercises done inside the specified timeintervall
             ExerciseDBManager edbm = new ExerciseDBManager();
-            List<Integer> exerID = edbm.getAllExerciseID();
+            List<Integer> exerID = edbm.getAllExerciseByWorkoutIds(workoutID);
 
+            System.out.println("avail ex");
             for(Integer eid : exerID) {
                 System.out.println(eid);
             }
 
-            System.out.println("Enter ExerciseID");
-            int eid=s.nextInt();
+            System.out.println("Enter exerciseID: ");
+            int eid = s.nextInt();
 
             // Print log of exercise specified by user
-            System.out.println(edbm.getResultLog(wid,eid));
+            System.out.println("printing results");
+            System.out.println(edbm.getResultLog(workoutID, eid));
         }
         catch (Exception e){
             e.printStackTrace();
