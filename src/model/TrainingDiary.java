@@ -260,8 +260,30 @@ public class TrainingDiary {
         Workout workout = new Workout(id, user.getID(), duration, fitnessLevel, performance, note, Date.valueOf(date));
         try {
             WorkoutDBManager workoutDBManager = new WorkoutDBManager();
+            ExerciseDBManager edbm = new ExerciseDBManager();
             workoutDBManager.createWorkout(workout);
             System.out.println("Workout created");
+            System.out.println("Do you want to add exercises? y/n:");
+            String answer = s.next();
+            List<String> exercises;
+            while (answer.equals("y")){
+                //get and list exercises available by name
+                exercises = edbm.getAllExerciseNameAndID();
+
+                for(String ex : exercises) {
+                    System.out.println(ex);
+                }
+                System.out.println("Enter exerciseID");
+                int eid = s.nextInt();
+                System.out.println("Enter kilo: ");
+                int kilo = s.nextInt();
+                System.out.println("Enter reps: ");
+                int reps = s.nextInt();
+                workoutDBManager.addExerciseToWorkout(eid,workout.getId(), kilo, reps);
+                System.out.println("Do you want to add exercises? y/n:");
+                answer = s.next();
+            }
+
         }
         catch (Exception e){
             e.printStackTrace();
