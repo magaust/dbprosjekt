@@ -98,11 +98,11 @@ public class TrainingDiary {
 
             // List all exercises done inside the specified timeintervall
             ExerciseDBManager edbm = new ExerciseDBManager();
-            List<Integer> exerID = edbm.getAllExerciseByWorkoutIds(workoutID);
+            List<Exercise> exerID = edbm.getAllExerciseByWorkoutIds(workoutID);
 
             System.out.println("Exercises you have completed in that time:");
-            for(Integer eid : exerID) {
-                System.out.println(eid);
+            for(Exercise exercise : exerID) {
+                System.out.println(exercise);
             }
 
             System.out.println("Enter exerciseID: ");
