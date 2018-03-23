@@ -51,9 +51,20 @@ public class TrainingDiary {
     }
 
     private void seeNumOfExercise() {
-        System.out.println("Which machine do you want to see (name of machine): ");
-        String name = s.next();
-        //TODO: Query to find the number of exercises for the chosen machine
+        System.out.println("Which machine do you want to see (id of machine): ");
+        try {
+            MachineDBManager mdbm = new MachineDBManager();
+            List<String> machines = mdbm.getAllMachines();
+            for(String machine : machines) {
+                System.out.println(machine);
+            }
+            int id = s.nextInt();
+            ExerciseDBManager edbm = new ExerciseDBManager();
+            System.out.println(edbm.getNumberOfExercisesWithMachine(id));
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void getWorkoutInfo() {
