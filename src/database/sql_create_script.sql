@@ -60,8 +60,6 @@ constraint apparatPK primary key (ApparatID)
 create table if not exists ØbrukerA(
 ApparatID int not null,
 ØvelseID int not null,
-antallKilo double,
-AntallSett int,
 constraint ØbrukerAPK primary key (ApparatID,ØvelseID),
 constraint ØbrukerAFK1 foreign key (ApparatID) references apparat(ApparatID),
 constraint ØbrukerAFK2 foreign key (ØvelseID) references øvelse(ØvelseID)

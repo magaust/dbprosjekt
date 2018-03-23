@@ -60,6 +60,18 @@ public class ExerciseDBManager extends DBManager {
         return exercises;
     }
 
+addMachinesToGenerator
+    public void addMachineToExercise(int machineId, int exerciseId) throws Exception {
+        String query = "insert into ØbrukerA (ApparatID, ØvelseID)" +
+                " values (:ApparatID:, :ØvelseID:);";
+
+        NamedParameterStatement statement = new NamedParameterStatement(query, connection);
+        statement.setInt("ApparatID", machineId);
+        statement.setInt("ØvelseID", exerciseId);
+
+        statement.getStatement().executeUpdate();
+    }
+  
     public int getNumberOfExercisesWithMachine(int id) throws Exception{
         String query = "select count(ØvelseID) as NumberOfExercies from ØbrukerA as EUM where EUM.ApparatID ="+id+";";
         Statement stmt = connection.createStatement();
@@ -70,7 +82,6 @@ public class ExerciseDBManager extends DBManager {
         }
         return n;
     }
-
 
 
 }
