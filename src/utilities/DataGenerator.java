@@ -28,10 +28,12 @@ public class DataGenerator {
         int workoutId = (int) (Math.random()*1000000);
         int exerciseId = (int) (Math.random()*1000000);
         int exerciseGroupId = (int) (Math.random()*1000000);
+        int machineId = (int) (Math.random()*1000000);
         try {
             WorkoutDBManager wDBM = new WorkoutDBManager();
             ExerciseDBManager eDBM = new ExerciseDBManager();
             ExerciseGroupDBManager egDBM = new ExerciseGroupDBManager();
+            MachineDBManager mDBM = new MachineDBManager();
 
             System.out.println("Creating exercises with ID: " + exerciseId + " and " + (exerciseId + 1));
             eDBM.createExercise(new Exercise(exerciseId, "Benkpress", "Ta en benk å press", false));
@@ -53,10 +55,10 @@ public class DataGenerator {
                 wDBM.createWorkout(newWorkout);
                 System.out.println("Workout created with id: " + workoutId + " for the userId " + userId);
 
-                wDBM.addExerciseToWorkout(exerciseId, workoutId + i);
+                wDBM.addExerciseToWorkout(exerciseId, workoutId + i, 100+(10*i), 10);
                 System.out.println("Added exercise " + exerciseId + " to workout " + workoutId);
                 if(i < 5) {
-                    wDBM.addExerciseToWorkout(exerciseId + 1, workoutId + i);
+                    wDBM.addExerciseToWorkout(exerciseId + 1, workoutId + i, 10+(10*i), 10);
                     System.out.println("Added exercise " + (exerciseId + 1) + " to workout " + (workoutId + i));
                 }
             }
@@ -69,6 +71,21 @@ public class DataGenerator {
             System.out.println("Added " + exerciseId + " to exerciseGroup " + exerciseGroupId);
             System.out.println("Added " + (exerciseId + 1) + " to exerciseGroup " + exerciseGroupId);
 
+
+            System.out.println("###CREATING MACHINES###");
+            System.out.println("Created machines with id: " + machineId + " - " + (machineId+4));
+            mDBM.createMachine(new Machine(machineId, "Maskin 1", "Dette er maskin nr1"));
+            mDBM.createMachine(new Machine(machineId+1, "Maskin 2", "Dette er maskin nr2"));
+            mDBM.createMachine(new Machine(machineId+2, "MeanMachine", "Dette er maskin nr3"));
+            mDBM.createMachine(new Machine(machineId+3, "RoMaskin", "Dette er maskin nr4"));
+            mDBM.createMachine(new Machine(machineId+4, "Tredemølle", "Dette er maskin nr5"));
+
+            System.out.println("Added machines " + machineId + " - " + (machineId+4) + " to exercise " + exerciseId);
+            eDBM.addMachineToExercise(machineId, exerciseId);
+            eDBM.addMachineToExercise(machineId + 1, exerciseId);
+            eDBM.addMachineToExercise(machineId+2, exerciseId);
+            eDBM.addMachineToExercise(machineId+3, exerciseId);
+            eDBM.addMachineToExercise(machineId+4, exerciseId);
         } catch (Exception e) {
             e.printStackTrace();
         }

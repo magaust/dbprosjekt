@@ -26,19 +26,22 @@ public class MachineDBManager extends DBManager{
 		statement.getStatement().executeUpdate();
 	}
 
-	public List<String> getAllMachines() throws SQLException {
-		String query = "select navn, ApparatID from apparat";
-		Statement stmt = connection.createStatement();
-		ResultSet rs = stmt.executeQuery(query);
-		List<String> machines = new ArrayList<>();
-		while (rs.next()) {
-			String name = rs.getString("navn");
-			String id = Integer.toString(rs.getInt("ApparatID"));
-			machines.add(name +" : "+id);
+	public List<Machine> getAllMachines() throws Exception{
+		String query = "select ApparatID, navn, brukerBeskrivelse from apparat";
+
+		Statement stmnt = connection.createStatement();
+		ResultSet results = stmnt.executeQuery(query);
+
+		ArrayList<Machine> machines = new ArrayList<>();
+
+		while(results.next()) {
+			machines.add(new Machine(
+					results.getInt("ApparatID"),
+					results.getString("navn"),
+					results.getString("BrukerBeskrivelse")
+			));
 		}
+
 		return machines;
 	}
-
-
-
 }

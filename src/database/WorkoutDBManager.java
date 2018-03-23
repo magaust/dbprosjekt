@@ -80,14 +80,16 @@ public class WorkoutDBManager extends DBManager{
         return workouts;
     }
 
-    public void addExerciseToWorkout(int exerciseID, int workoutID) throws Exception{
-        String query = "insert into ØtilhørerW (ØvelseID, WorkoutID)" +
-                " values (:ØvelseID:, :WorkoutID:);";
+    public void addExerciseToWorkout(int exerciseID, int workoutID, int Kilo, int Reps) throws Exception{
+        String query = "insert into ØtilhørerW (ØvelseID, WorkoutID, Kilo, Reps)" +
+                " values (:ØvelseID:, :WorkoutID:, :Kilo:, :Reps:);";
 
         NamedParameterStatement statement =
                 new NamedParameterStatement(query, connection);
         statement.setInt("ØvelseID", exerciseID);
         statement.setInt("WorkoutID", workoutID);
+        statement.setInt("Kilo", Kilo);
+        statement.setInt("Reps", Reps);
         statement.getStatement().executeUpdate();
     }
 

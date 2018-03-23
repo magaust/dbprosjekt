@@ -4,7 +4,6 @@ public class Machine {
     private int id;
     private String name;
     private String userDescription;
-    private ExerciseGroup excerciseGroup;
 
     public Machine(int id, String name, String userDescription) {
         this.id = id;
@@ -36,12 +35,7 @@ public class Machine {
         this.userDescription = userDescription;
     }
 
-
-    /**
-     * Mangler konsistens imellom grupper
-     * @param eg
-     */
-    public void setExcerciseGroup(ExerciseGroup eg) {
-        this.excerciseGroup = eg;
+    public String toString() {
+        return "Machine, ID: " + id + ", Name: " + name + ", Description: " + userDescription;
     }
 }

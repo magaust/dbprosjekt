@@ -23,7 +23,7 @@ public class TrainingDiary {
         s = new Scanner(System.in);
         while (true) {
             System.out.println("" +
-                    "1: Registrate a machine, exercise, exercise group or workout \n" +
+                    "1: Register a machine, exercise, exercise group or workout \n" +
                     "2: Get information about the n last completed workouts \n" +
                     "3: See a log of result for a specific exercise \n" +
                     "4: Find exercises in an exercise group \n" +
@@ -55,8 +55,8 @@ public class TrainingDiary {
         System.out.println("Which machine do you want to see (id of machine): ");
         try {
             MachineDBManager mdbm = new MachineDBManager();
-            List<String> machines = mdbm.getAllMachines();
-            for(String machine : machines) {
+            List<Machine> machines = mdbm.getAllMachines();
+            for(Machine machine : machines) {
                 System.out.println(machine);
             }
             int id = s.nextInt();
@@ -197,8 +197,9 @@ public class TrainingDiary {
         String name = s.next();
         System.out.println("Insert exercise description: ");
         String description = s.next();
-        System.out.println("Is this a machine? (0/1) ");
+        System.out.println("Is this a machine? (True/False) ");
         Boolean isMachine = s.nextBoolean();
+
         Exercise ex = new Exercise(id, name, description, isMachine);
 
         try {
@@ -207,6 +208,26 @@ public class TrainingDiary {
             System.out.println("Exercise created");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        if(isMachine) {
+            //tullat måte å gjøre d på
+            try {
+                MachineDBManager mDBM = new MachineDBManager();
+                List<Machine> machines = mDBM.getAllMachines();
+                System.out.println("The available machines are: ");
+                for (Machine machine :
+                        machines) {
+                    System.out.println(machine);
+                }
+                System.out.println("Insert machine id: ");
+                int machineId = s.nextInt();
+                ExerciseDBManager eDBM = new ExerciseDBManager();
+                eDBM.addMachineToExercise(machineId, id);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -240,9 +261,9 @@ public class TrainingDiary {
         int performance = s.nextInt();
         System.out.println("Insert note: ");
         String note = s.next();
-        System.out.println("Insert date: (String(YYYY.MM.DD) ");
+        System.out.println("Insert date: (YYYY-MM-DD) ");
         String date = s.next();
-        Workout workout = new Workout(id, 1, duration, fitnessLevel, performance, note, Date.valueOf(date));
+        Workout workout = new Workout(id, user.getID(), duration, fitnessLevel, performance, note, Date.valueOf(date));
         try {
             WorkoutDBManager workoutDBManager = new WorkoutDBManager();
             workoutDBManager.createWorkout(workout);

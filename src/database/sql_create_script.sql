@@ -21,6 +21,8 @@ constraint check((0<=prestasjon)&(prestasjon>=10))
 create table if not exists ØtilhørerW(
 ØvelseID int not null,
 WorkoutID int not null,
+Kilo int,
+Reps int,
 constraint ØtilhørerWPK primary key (ØvelseID, WorkoutID),
 constraint ØtilhørerWFK1 foreign key (ØvelseID) references Øvelse(ØvelseID),
 constraint ØtilhørerWFK2 foreign key (WorkoutID) references Workout(NumberID)
@@ -58,8 +60,6 @@ constraint apparatPK primary key (ApparatID)
 create table if not exists ØbrukerA(
 ApparatID int not null,
 ØvelseID int not null,
-antallKilo double,
-AntallSett int,
 constraint ØbrukerAPK primary key (ApparatID,ØvelseID),
 constraint ØbrukerAFK1 foreign key (ApparatID) references apparat(ApparatID),
 constraint ØbrukerAFK2 foreign key (ØvelseID) references øvelse(ØvelseID)
