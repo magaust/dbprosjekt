@@ -14,7 +14,7 @@ public class App {
 		TrainingDiary diary;
 		try {
 			DataGenerator gen = new DataGenerator();
-			gen.generateAllData();
+			//gen.generateAllData();
 			diary = new TrainingDiary(gen.user);
 			diary.run();
 
